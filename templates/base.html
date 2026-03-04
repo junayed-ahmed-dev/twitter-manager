@@ -4,6 +4,8 @@
 
 <title>Chirper</title>
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 
 body{
@@ -128,6 +130,65 @@ button:hover{
     border-radius:8px;
     border:1px solid #ddd;
     margin-bottom:10px;
+}
+
+
+/* ---------------- MOBILE RESPONSIVE ---------------- */
+
+@media (max-width:900px){
+
+.layout{
+    flex-direction:column;
+}
+
+/* sidebar becomes top nav */
+
+.sidebar{
+    width:100%;
+    height:auto;
+    position:relative;
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px;
+}
+
+.sidebar a{
+    display:inline-block;
+}
+
+/* feed becomes full width */
+
+.feed{
+    width:100%;
+    border-left:none;
+    border-right:none;
+}
+
+/* hide rightbar on smaller screens */
+
+.rightbar{
+    width:100%;
+    height:auto;
+}
+
+}
+
+/* very small phones */
+
+@media (max-width:600px){
+
+.rightbar{
+    display:none;
+}
+
+.sidebar h2{
+    font-size:22px;
+}
+
+.feed{
+    padding:15px;
+}
+
 }
 
 </style>

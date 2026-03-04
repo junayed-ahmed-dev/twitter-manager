@@ -137,7 +137,11 @@ def edit_profile(request):
     if request.method == "POST":
 
         request.user.email = request.POST.get("email")
-        profile.age = request.POST.get("age")
+        age = request.POST.get("age")
+        if age:
+            profile.age = int(age)
+        else:
+            profile.age = None
 
         if "photo" in request.FILES:
             profile.photo = request.FILES["photo"]

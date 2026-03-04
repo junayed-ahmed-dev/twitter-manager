@@ -1,0 +1,31 @@
+{% extends "base_public.html" %}
+
+{% block content %}
+
+<h2 style="text-align:center;margin-bottom:20px;">Login</h2>
+
+{% if form.errors %}
+<p style="color:red;text-align:center;">
+Incorrect username or password.
+</p>
+{% endif %}
+
+<form method="POST">
+{% csrf_token %}
+
+<label>Username</label>
+<input type="text" name="username" required>
+
+<label>Password</label>
+<input type="password" name="password" required>
+
+<button type="submit">Login</button>
+
+</form>
+
+<p style="text-align:center;margin-top:15px;">
+Don't have an account?
+<a href="/users/signup/">Sign Up</a>
+</p>
+
+{% endblock %}

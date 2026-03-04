@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Search Users</h2>
+
+<form method="GET">
+
+<input type="text" name="q" placeholder="Enter username">
+
+<button type="submit">Search</button>
+
+</form>
+
+<hr>
+
+{% for user in users %}
+
+<p>
+
+{{ user.username }}
+
+<a href="/users/follow/{{user.id}}">Follow</a>
+
+</p>
+
+{% endfor %}
+
+{% endblock %}

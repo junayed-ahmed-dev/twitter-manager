@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Home</h2>
+
+<!-- Tweet box -->
+
+<form method="POST" action="/tweet/create/">
+{% csrf_token %}
+
+<textarea name="content" rows="3" placeholder="What's happening?"></textarea>
+
+<button type="submit">Tweet</button>
+
+</form>
+
+<br>
+
+<!-- Tweet feed -->
+
+{% for tweet in tweets %}
+
+<div class="tweet">
+
+<div>
+
+<b>{{ tweet.author.username }}</b>
+<small> · {{ tweet.created_at|timesince }} ago</small>
+
+</div>
+
+<p>{{ tweet.content }}</p>
+
+<p>
+Likes: {{ tweet.likes.count }} |
+Replies: {{ tweet.replies.count }} |
+Retweets: {{ tweet.retweets.count }}
+</p>
+
+<div class="actions">
+
+<a href="/tweets/like/{{tweet.id}}">❤️ Like</a>
+<a href="/tweets/reply/{{tweet.id}}">💬 Reply</a>
+<a href="/tweets/retweet/{{tweet.id}}">🔁 Retweet</a>
+<a href="/favorites/add/{{tweet.id}}">⭐ Favorite</a>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+{% endblock %}

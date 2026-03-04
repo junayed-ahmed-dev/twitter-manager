@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Reply to Tweet</h2>
+
+<div style="border:1px solid #ccc;padding:10px;margin-bottom:20px;">
+<b>{{ tweet.author.username }}</b><br>
+{{ tweet.content }}
+</div>
+
+<form method="POST">
+{% csrf_token %}
+
+<textarea name="content" rows="4" required></textarea>
+
+<br><br>
+
+<button type="submit">Reply</button>
+
+</form>
+
+{% endblock %}

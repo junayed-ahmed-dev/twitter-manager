@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div style="max-width:600px;margin:auto">
+
+<h2>⭐ {{ list.name }}</h2>
+
+{% if items %}
+
+{% for item in items %}
+
+<div style="
+border:1px solid #ddd;
+padding:12px;
+margin-bottom:10px;
+border-radius:6px;
+">
+
+<b>{{ item.tweet.author.username }}</b>
+
+<p>{{ item.tweet.content }}</p>
+
+<small>{{ item.tweet.created_at }}</small>
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<p>No tweets in this list.</p>
+
+{% endif %}
+
+</div>
+
+{% endblock %}

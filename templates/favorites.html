@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div style="max-width:600px;margin:auto">
+
+<h2>⭐ Favorite Lists</h2>
+
+
+{% if tweet %}
+
+<h3>Add tweet to list</h3>
+
+<form method="POST">
+{% csrf_token %}
+
+<select name="list" required>
+
+{% for list in lists %}
+
+<option value="{{ list.id }}">{{ list.name }}</option>
+
+{% endfor %}
+
+</select>
+
+<button>Add</button>
+
+</form>
+
+<hr>
+
+{% endif %}
+
+
+<h3>Create New List</h3>
+
+<form method="POST" action="/favorites/create/">
+{% csrf_token %}
+
+<input type="text" name="name" placeholder="List name" required>
+
+<button>Create</button>
+
+</form>
+
+<hr>
+
+
+{% if lists %}
+
+<h3>Your Lists</h3>
+
+<ul>
+
+{% for list in lists %}
+
+<li>
+<a href="/favorites/list/{{ list.id }}/">
+{{ list.name }}
+</a>
+</li>
+
+{% endfor %}
+
+</ul>
+
+{% else %}
+
+<p>No favorite lists yet.</p>
+
+{% endif %}
+
+</div>
+
+{% endblock %}

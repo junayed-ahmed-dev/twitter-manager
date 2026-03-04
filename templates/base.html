@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Chirper</title>
+
+<style>
+
+body{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
+    background:#f5f8fa;
+    margin:0;
+}
+
+/* MAIN LAYOUT */
+
+.layout{
+    display:flex;
+    max-width:1100px;
+    margin:auto;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:250px;
+    padding:20px;
+    position:sticky;
+    top:0;
+    height:100vh;
+}
+
+.sidebar h2{
+    color:#1DA1F2;
+    font-size:28px;
+}
+
+.sidebar a{
+    display:block;
+    padding:12px;
+    font-weight:bold;
+    text-decoration:none;
+    color:black;
+    border-radius:20px;
+}
+
+.sidebar a:hover{
+    background:#e8f5fe;
+}
+
+/* FEED */
+
+.feed{
+    width:600px;
+    border-left:1px solid #ddd;
+    border-right:1px solid #ddd;
+    min-height:100vh;
+    padding:20px;
+}
+
+/* RIGHT SIDEBAR */
+
+.rightbar{
+    width:250px;
+    padding:20px;
+    position:sticky;
+    top:0;
+    height:100vh;
+}
+
+/* TWEETS */
+
+.tweet{
+    background:white;
+    border:1px solid #ddd;
+    padding:15px;
+    margin-bottom:15px;
+    border-radius:10px;
+}
+
+.tweet:hover{
+    background:#f7f9fa;
+}
+
+/* ACTIONS */
+
+.actions a{
+    margin-right:15px;
+    text-decoration:none;
+    color:#555;
+    font-size:14px;
+}
+
+.actions a:hover{
+    color:#1DA1F2;
+}
+
+/* TWEET BOX */
+
+textarea{
+    width:100%;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ddd;
+    resize:none;
+}
+
+button{
+    background:#1DA1F2;
+    border:none;
+    padding:8px 18px;
+    color:white;
+    border-radius:20px;
+    margin-top:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+button:hover{
+    background:#0d8ddb;
+}
+
+/* TRENDING */
+
+.rightbar p{
+    background:white;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ddd;
+    margin-bottom:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="layout">
+
+<!-- LEFT SIDEBAR -->
+
+<div class="sidebar">
+
+<h2>🐦 Chirper</h2>
+
+<a href="/dashboard/">🏠 Home</a>
+<a href="/tweet/create/">✏️ Compose</a>
+<a href="/tweets/search/">🔎 Search Tweets</a>
+<a href="/users/search/">👥 Users</a>
+<a href="/favorites/">⭐ Favorites</a>
+<a href="/explore/">🌎 Explore</a>
+
+<br>
+
+<a href="/users/profile/{{request.user.id}}">👤 Profile</a>
+<form action="/accounts/logout/" method="POST">
+{% csrf_token %}
+<button type="submit">Logout</button>
+</form>
+
+</div>
+
+
+<!-- MAIN FEED -->
+
+<div class="feed">
+
+{% block content %}
+{% endblock %}
+
+</div>
+
+
+<!-- RIGHT SIDEBAR -->
+
+<div class="rightbar">
+
+<h3>Trending</h3>
+
+<p>#Django</p>
+<p>#Python</p>
+<p>#AI</p>
+<p>#Tech</p>
+
+</div>
+
+</div>
+
+</body>
+</html>

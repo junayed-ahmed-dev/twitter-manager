@@ -1,0 +1,39 @@
+{% extends "base_public.html" %}
+
+{% block content %}
+
+<h2>Create Account</h2>
+
+{% if error %}
+<p style="color:red">{{error}}</p>
+{% endif %}
+
+<form method="POST" enctype="multipart/form-data">
+
+{% csrf_token %}
+
+<label>Username</label>
+<input type="text" name="username" required>
+
+<label>Email</label>
+<input type="email" name="email" required>
+
+<label>Age</label>
+<input type="number" name="age" required>
+
+<label>Password</label>
+<input type="password" name="password" required>
+
+<label>Profile Photo (optional)</label>
+<input type="file" name="photo">
+
+<button type="submit">Sign Up</button>
+
+</form>
+
+<p style="text-align:center;margin-top:15px;">
+Already have an account?
+<a href="/accounts/login/">Login</a>
+</p>
+
+{% endblock %}

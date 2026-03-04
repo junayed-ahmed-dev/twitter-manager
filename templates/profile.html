@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div style="max-width:600px;margin:auto">
+
+<!-- PROFILE HEADER -->
+
+<div style="border-bottom:1px solid #ddd;padding-bottom:20px;margin-bottom:20px">
+
+<div style="display:flex;align-items:center;gap:20px">
+
+{% if profile_user.profile.photo %}
+<img src="{{ profile_user.profile.photo.url }}" width="90" style="border-radius:50%">
+{% else %}
+<img src="https://via.placeholder.com/90" width="90" style="border-radius:50%">
+{% endif %}
+
+<div>
+
+<h2>@{{ profile_user.username }}</h2>
+
+<p style="color:#555">
+{{ profile_user.email }}
+{% if profile_user.profile.age %}
+• Age {{ profile_user.profile.age }}
+{% endif %}
+</p>
+
+<p>
+<b>{{ followers }}</b> Followers |
+<b>{{ following }}</b> Following
+</p>
+
+</div>
+
+</div>
+
+
+<!-- ACTION BUTTONS -->
+
+<div style="margin-top:15px">
+
+{% if request.user == profile_user %}
+
+<a href="/users/edit/">
+<button>⚙️ Edit Profile</button>
+</a>
+
+{% else %}
+
+<a href="/users/follow/{{profile_user.id}}">
+
+{% if is_following %}
+<button>Following</button>
+{% else %}
+<button>Follow</button>
+{% endif %}
+
+</a>
+
+{% endif %}
+
+</div>
+
+</div>
+
+
+<!-- USER TWEETS -->
+
+<h3>Tweets</h3>
+
+{% for tweet in tweets %}
+
+<div class="tweet">
+
+<b>
+<a href="/users/profile/{{tweet.author.id}}">
+{{ tweet.author.username }}
+</a>
+</b>
+
+<small> · {{ tweet.created_at|timesince }} ago</small>
+
+<p>{{ tweet.content }}</p>
+
+<div class="actions">
+
+<a href="/tweets/like/{{tweet.id}}">❤️ Like</a>
+
+<a href="/tweets/reply/{{tweet.id}}">💬 Reply</a>
+
+<a href="/tweets/retweet/{{tweet.id}}">🔁 Retweet</a>
+
+<a href="/favorites/add/{{tweet.id}}">⭐ Favorite</a>
+
+</div>
+
+</div>
+
+{% empty %}
+
+<p>No tweets yet.</p>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

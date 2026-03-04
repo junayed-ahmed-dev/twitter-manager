@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Search Tweets</h2>
+
+<form method="GET">
+
+<input type="text" name="q" placeholder="Enter keyword">
+
+<button type="submit">Search</button>
+
+</form>
+
+<hr>
+
+{% for tweet in tweets %}
+
+<b>{{ tweet.author.username }}</b>
+
+<p>{{ tweet.content }}</p>
+
+Likes: {{ tweet.likes.count }}
+Replies: {{ tweet.replies.count }}
+Retweets: {{ tweet.retweets.count }}
+
+<br>
+
+<a href="/tweets/like/{{tweet.id}}">Like</a>
+<a href="/tweets/reply/{{tweet.id}}">Reply</a>
+<a href="/tweets/retweet/{{tweet.id}}">Retweet</a>
+
+<hr>
+
+{% endfor %}
+
+{% endblock %}

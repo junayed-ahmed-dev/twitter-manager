@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Your Followers</h2>
+
+{% if followers %}
+
+<ul>
+
+{% for f in followers %}
+
+<li>{{ f.follower.username }}</li>
+
+{% endfor %}
+
+</ul>
+
+{% else %}
+
+<p>No followers yet.</p>
+
+{% endif %}
+
+{% endblock %}
